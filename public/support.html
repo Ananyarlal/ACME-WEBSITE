@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="support.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sen:regular,700,800" media="all">
+
+<script>
+  async function formHandler() {
+   const name =  document.getElementById("name").value
+   const email = document.getElementById("email").value
+   const message = document.getElementById("message").value
+const data= { name: name,email:email, message:message} //{name:"appu",em.....}
+console.log('hello',data)
+    const api_url = "http://localhost:3000/contact";
+    const rawResponse = await fetch(api_url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+console.log(rawResponse)
+  }
+</script>
+
+
+</head>
+
+<body>
+  <div class="main-header">
+    <p> <span>Announcement</span> How we're responding to COVID-19</p>
+  </div>
+  <!-- navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/acme-logo.svg" />
+    </div>
+    <div class="nav-main">
+      <div class="nav-items-container">
+        <div class="nav-item"><a href="index.html">Home</a></div>
+        <div class="nav-item"><a href="about.html">About</a></div>
+        <div class="nav-item"><a href="">Shop</a></div>
+        <div class="nav-item"><a href="">Donate</a></div>
+        <div class="nav-item"><a href="">Contact</a></div>
+      </div>
+      <div class="nav-item cart">
+        <img src="assets/cart.svg" />
+        <div class="badge"></div>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="main-title">Contact Acme Outdoors</div>
+        <div class="container1">
+        <img src="assets/chat.svg">
+        <div class="content">
+            <h1>Contact Us</h1>
+            <p>just want to say hi? We'd love to<br>
+            hear from you. We love our <br>
+        customers and community!</p>
+        <button>Send Us A Message</button>
+        </div>
+
+       
+       
+   
+    
+        
+    </div>
+</div></div>
+<div class="container2">
+  <img src="assets/chat.svg">
+  <div class="content">
+      <h1>Contact Us</h1>
+      <p>just want to say hi? We'd love to<br>
+      hear from you. We love our <br>
+  customers and community!</p>
+  <button>Send Us A Message</button>
+  </div>
+</div>
+<div class="contact-content">
+  <div class="contact">
+    <h1>Contact Us</h1>
+    <p> Acme Outdoors<br>
+    123 Rainy Street<br>
+  Oklahoma City , OK 73129</p>
+  <div class="general">
+    <p><b> General Inquiries</b>: (405) 555-5555<br>
+    <b>Customer Support</b>: (405) 555-5556</p></div>
+  </div>
+</div>
+
+
+<div class="form">
+  <div class="form-details">
+    <h1>Contact Form</h1>
+    <p>Send us a Message amd we'll get back to you as soon as we can!</p>
+  </div>
+  <div class="form-content">
+
+    <label for="text"><b>Name</b><br></label>
+    <input type="text" placeholder="Enter your name" name="your name" id="name" required><br>
+
+    <label for="psw"><b>email</b></label><br>
+    <input type="email" placeholder="Enteryour email address" name="email" id="email" required><br>
+
+    <label for="psw-repeat"><b>Your Message</b></label><br>
+    <input type="text" placeholder="enter your message" name="psw-repeat" id="message" required><br>
+    <button onclick="formHandler()">Submitt</button>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+  <div class="logo">
+    <img src="assets/acme-logo.svg" />
+  </div>
+  <div class="social-buttons-container">
+    <div class="social-button">
+      <img src="assets/twitter.svg" />
+    </div>
+    <div class="social-button">
+      <img src="assets/facebook.svg" />
+    </div>
+    <div class="social-button">
+      <img src="assets/instagram.svg" />
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="giftDis.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sen:regular,700,800" media="all">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/acme-logo.svg" />
+    </div>
+
+    <div class="nav-main">
+      <div class="nav-items-container">
+        <div class="nav-item"><a href="">Home</a></div>
+        <div class="nav-item"><a href="about.html">About</a></div>
+        <div class="nav-item"><a href="">Shop</a></div>
+        <div class="nav-item"><a href="">Donate</a></div>
+        <div class="nav-item"><a href="support.html">Contact</a></div>
+      </div>
+      <div class="nav-item cart">
+        <img src="assets/cart.svg" />
+        <div class="badge"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="heading">
+    <p>Gift Card</p>
+  </div>
+
+  <div class="gift-wrapper">
+    <div class="pic1">
+      <img src="assets/gift-card.jpeg" alt="" />
+    </div>
+
+    <div class="item-box">
+      <h2 class="item-name">Gift Card</h2>
+      <h4 class="item-price">$ 250 USD</h4>
+      <h4 class="quantity">Quantity</h4>
+      <div class="near">
+        <button class="quantityValue">1</button>
+        <button onclick="addToCart()">Add to cart</button>
+        <div id="overlay" onclick="off()"></div>
+      </div>
+      <div class="para">
+        <h2>What's a Rich Text Element?</h2>
+        <p>
+          The rich text elements allows you to create and format headings,
+          paragraphs,<br />
+          blockquotes, images, and video all in one place instead of having to
+          add and format<br />
+          them individually. Just double-click and easily create content.
+        </p>
+        <h4>Static and dynamic content editing</h4>
+        <p>
+          A rich text element can be used with static or dynamic content. For
+          static content,<br />
+          just drop it into any page and begin editing.For dynamic content,
+          add a rich text<br />
+          field to any collection and then connect to a rich text element to
+          that field in the<br />
+          settings panel.Voila!
+        </p>
+        <h4>How to customize formatting for each rich text</h4>
+        <p>
+          Headings, paragraphs, blockquotes,figures, images, and figure
+          captions can all be<br />
+          styled after a class is added to the rich text element using the
+          "when inside of" <br />
+          nested selector system.
+        </p>
+        <h3>Tweet about #AcmeOutdoors products</h3>
+
+        <div class="button">
+          <!-- <div class="icon"><span>Twitter</span> -->
+          <img src="assets/twitter.svg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-popup" id="cart-popup">
+    <div class="cart-header">
+      <h3>Your cart</h3>
+      <span> X </span>
+    </div>
+
+    <div class="cart-content" id="cart-content">
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-footer-heading">
+       <h4>Subtotal <span id="total_price"></span></h4>
+        
+      </div>
+      <button>Continue to Checkout</button>
+    </div>
+  </div>
+</body>
+
+<script>
+  const updateCount=(index,count) => {
+    cart[index].count = count
+    refreshCart();
+  }
+
+  const _updateCount=(index) =>{
+    const count = document.getElementById("cart-count-"+index).value
+    updateCount(index,count)
+  }
+
+  const removeFromCart = (index) =>{
+    cart = cart.filter((ele,_index) => _index != index)
+    refreshCart()
+  }
+
+  const getCartItem = (cartItem,updateCount,index,removeFromCart) => {
+    return `<div class="cart-item">
+        <img src="${cartItem.image}" alt="" width="100" height="100" />
+        <div class="cart-item2">
+          <h4>${cartItem.name}</h4>
+          <p class="unit-price">${cartItem.unitPrice}</p>
+          <span class="remove-item-cart" onClick="removeFromCart(${index})">Remove</span>
+        </div>
+
+        <input type="number" id="cart-count-${index}" class="cart-item-quantity" value="${cartItem.count}" id="item_count_1" onChange="_updateCount(${index})" />
+      </div>`
+  }
+  const refreshCart = ()=>{
+    const cartBody = document.getElementById("cart-content")
+    cartBody.innerHTML = cart.map((ele,index) => getCartItem(ele,updateCount,index,removeFromCart))
+    refreshTotalPrice()
+  }
+
+  const refreshTotalPrice = () => {
+    let total_price = 0
+    cart.forEach(ele => total_price+=ele.unitPrice * ele.count)
+    document.getElementById("total_price").innerHTML = total_price
+  }
+  let cart = [
+    {
+      name: "Gift Card",
+      image: "assets/gift-card.jpeg",
+      unitPrice: 25.00,
+      count: 0
+    },
+    {
+      name: "Gift Card 2",
+      image: "assets/backpack.jpeg",
+      unitPrice: 35.00,
+      count: 0
+    }
+  ]
+  refreshCart()
+  const countListner = document.guer
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"
+  integrity="sha512-nO7wgHUoWPYGCNriyGzcFwPSF+bPDOR+NvtOYy2wMcWkrnCNPKBcFEkU80XIN14UVja0Gdnff9EmydyLlOL7mQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+   async function addToCart() {
+    this.innerHTML = "Adding to Cart";
+    document.getElementById("cart-popup").style.display = "flex";
+    document.getElementById("overlay").style.display="block";
+    const name=document.querySelector(".item-name").textContent;
+    let price=document.querySelector(".item-price").textContent;
+    let quantity=document.querySelector(".quantityValue").textContent;
+    price= Number(price.replace(/[^0-9]/g, ''));
+    quantity=Number(quantity)
+    console.log(name,price,quantity)
+
+    const api_url = "http://localhost:3000/cart";
+    const rawResponse = await fetch(api_url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({product_name : name , price :price , stock: quantity})
+  });
+console.log(rawResponse)
+  }
+  function off(){
+    document.getElementById("overlay").style.display="none";
+  }
+  function printResult() {
+    unitPrice = document.getElementById("unitPrice").innerHTML;
+    console.log(unitPrice);
+    result = calculateItems() * unitPrice;
+  }
+  function calculateItems() {
+    var price = 0;
+    var item_count = 0;
+    item_count = document.getElementById("item_count").value;
+    console.log("adhjsal", item_count);
+    return item_count;
+  }
+</script>
+
+
+
+<footer class="footer">
+  <div class="logo">
+    <img src="assets/acme-logo.svg" />
+  </div>
+  <div class="social-buttons-container">
+    <div class="social-button">
+      <img src="assets/twitter.svg" />
+    </div>
+    <div class="social-button">
+      <img src="assets/facebook.svg" />
+    </div>
+    <div class="social-button">
+      <img src="assets/instagram.svg" />
+    </div>
+  </div>
+</footer>
+</html>
